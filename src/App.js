@@ -2,27 +2,13 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-const [count, setCount] = useState(0);  
-console.log(useState(0))
+  const [tasks, setTasks] = useState([{id:5247, name: "React coding", completed: false}, 
+                                      {id:6268, name: "Angular coding", completed: true}, 
+                                      {id:5879, name: ".NET API coding", completed: true}])
 
-  function handleAdd(){
-    setCount(count+1);
-  }
-  function handleSub(){
-    setCount(count-1);
-  }
-  function handleReset(){
-    setCount(0);
-  }
  
   return (
     <div className='App'>
-        <div className="box">
-          <p> {count}</p>
-          <button className='add' onClick={()=> setCount(count+1) }>ADD</button>
-          <button className='sub' onClick={handleSub}>SUB</button>
-          <button className='reset' onClick={handleReset}>RESET</button>
-        </div>
       </div>
   );
 }
