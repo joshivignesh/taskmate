@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './App.css';
+import Header  from './components/Header'
+import AddTask from './components/AddTask'
+import ShowTask from './components/ShowTask'
 
 function App() {
   const [tasks, setTasks] = useState([{id:5247, name: "React coding", completed: false}, 
@@ -9,6 +12,9 @@ function App() {
  
   return (
     <div className='App'>
+     <Header> </Header>
+     <AddTask />
+     <ShowTask />
       </div>
   );
 }
