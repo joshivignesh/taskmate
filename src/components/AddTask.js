@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AddTask = ({ tasksList, setTaskslist }) => {
+export const AddTask = ({ tasksList, setTaskslist, task, setTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -8,13 +8,11 @@ export const AddTask = ({ tasksList, setTaskslist }) => {
     const newTask = {
       id: date.getTime(),
       name: e.target.task.value,
-      time: `${date.toLocaleTimeString} ${date.toLocaleDateString}`,
+      time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
     };
     //setTaskslist([...tasksList, newTask]);
-    //setTaskslist([...tasksList, newTask]);
-    setTaskslist((tasksList) => [...tasksList, newTask]); // This correctly creates a new array.
-    console.log(tasksList, "tasksList");
-    console.log(newTask, "newTask");
+    setTaskslist([...tasksList, newTask]);
+    //setTaskslist((tasksList) => [...tasksList, newTask]); // This correctly creates a new array.
   };
 
   return (

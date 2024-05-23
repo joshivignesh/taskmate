@@ -1,6 +1,15 @@
 import React from "react";
 
-export const ShowTask = ({ tasksList, setTaskslist }) => {
+export const ShowTask = ({ tasksList, setTaskslist, task, setTask }) => {
+  const handleEdit = (id) => {
+    const selectedTask = tasksList.select((taskTodo) => taskTodo.id === id);
+  };
+
+  const handleDelete = (id) => {
+    const updatedTaskList = tasksList.filter((taskTodo) => taskTodo.id !== id);
+    setTaskslist(updatedTaskList);
+  };
+
   return (
     <section className="showTask">
       <div className="head">
@@ -8,19 +17,25 @@ export const ShowTask = ({ tasksList, setTaskslist }) => {
           <span className="title">Todo</span>
           <span className="count">{tasksList?.length}</span>
         </div>
-        <button className="clearAll" onClick={() => setTaskslist([])}>
+        <button onClick={() => setTaskslist([])} className="clearAll">
           Clear All
         </button>
       </div>
       <ul>
-        {tasksList?.map((task) => (
-          <li key={task.id}>
+        {tasksList?.map((taskTodo) => (
+          <li key={taskTodo.id}>
             <p>
-              <span className="name">{task.name}</span>
-              <span className="time">{task.time}</span>
+              <span className="name">{taskTodo.name}</span>
+              <span className="time">{taskTodo.time}</span>
             </p>
-            <i className="bi bi-pencil-square"></i>
-            <i className="bi bi-trash"></i>
+            <i
+              onClickCapture={() => handleEdit(taskTodo.id)}
+              className="bi bi-pencil-square"
+            ></i>
+            <i
+              onClick={() => handleDelete(taskTodo.id)}
+              className="bi bi-trash"
+            ></i>
           </li>
         ))}
       </ul>
