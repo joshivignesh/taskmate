@@ -1,32 +1,20 @@
-import React from "react";
-
-export const AddTask = ({ tasksList, setTaskslist, task, setTask }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const date = new Date();
-    const newTask = {
-      id: date.getTime(),
-      name: e.target.task.value,
-      time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
-    };
-    //setTaskslist([...tasksList, newTask]);
-    setTaskslist([...tasksList, newTask]);
-    //setTaskslist((tasksList) => [...tasksList, newTask]); // This correctly creates a new array.
-  };
-
+const AddTask = ({ handleSubmit, editid, task, setTask }) => {
   return (
     <section className="addTask">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="task"
+          value={task}
           autoComplete="off"
+          placeholder="add task"
           maxLength="25"
-          placeholder="add task.."
+          onChange={(e) => setTask(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <button type="submit">{editid ? "Update" : "Add"}</button>
       </form>
     </section>
   );
 };
+
+export default AddTask;
